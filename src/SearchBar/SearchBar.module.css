@@ -1,0 +1,43 @@
+.SearchBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SearchField {
+    border-radius: 10px;
+
+    width: 150%;
+    height: 25px;
+    text-align: center;
+}
+
+
+
+.SearchField:focus::placeholder {
+    color: transparent;
+}
+
+.SearchButton {
+    position: relative;
+    box-sizing: border-box;
+    margin: 20px 0;
+    border-radius: 999px;
+    color: #FFFFFF;
+    box-shadow: #5E5DF0 0 10px 20px -10px;
+    background: #5E5DF0;
+    cursor: pointer;
+    font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    opacity: 1;
+    outline: 0 solid transparent;
+    padding: 8px 40px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 150%;
+    word-break: break-word;
+    border: 0;
+}

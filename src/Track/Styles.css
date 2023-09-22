@@ -1,0 +1,33 @@
+#div-container {
+    width: 100%;
+
+
+
+}
+
+#inner {
+
+
+
+    float: left;
+}
+
+.div1 {
+    line-height: 0;
+
+}
+
+.div2 {
+    line-height: 0;
+
+}
+
+.div3 {
+
+    height: 100%;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
