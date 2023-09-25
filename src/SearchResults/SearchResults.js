@@ -1,30 +1,17 @@
 /*List of Tracks*/
-import React, { useState } from 'react';
+import React from 'react';
 import TrackList from '../Tracklist/Tracklist';
 import styles from './SearchResults.module.css';
 
 function SearchResults(props) {
-    const [tracks, setTracks] = useState(props.songs.songs)
-    // const tracks = [
-    //     {
-    //         name: "xxxxx",
-    //         artist: "xxxxartistyo",
-    //         album: "albumyoyo",
-    //         id: "123xxxx"
-    //     },
-    //     {
-    //         name: "Track2xxxx",
-    //         artist: "artistyupupo",
-    //         album: "XXXalbumyoyo",
-    //         id: "99xxx9"
-    //     },
-    //     {
-    //         name: "XoXO",
-    //         artist: "artistyoXOOOO",
-    //         album: "alb9999umyoyo",
-    //         id: "WAAAAAA"
-    //     }
-    // ]
+    //const [tracks, setTracks] = useState(props.songs)
+    const tracks = props.songs;
+
+    // const addSongToPlayList = (song) => {
+    //     setTracks((prev) => {
+    //         return [song, ...prev];
+    //     });
+    // };
 
     return (
         <div className={styles.Results}>
@@ -32,7 +19,11 @@ function SearchResults(props) {
                 <h4 className={styles.H3Text}>Results</h4>
             </div>
             <div className={styles.SearchContent}>
-                <TrackList tracks={tracks} sign="+" />
+                <TrackList
+                    tracks={tracks}
+                    sign="+"
+                    onAdd={props.onAdd}
+                />
             </div>
         </div>
     )

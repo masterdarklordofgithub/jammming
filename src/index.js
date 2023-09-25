@@ -2,14 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './AppFolder/App';
 import './index.css';
-import songs from './mockSongs.json';
 import reportWebVitals from './reportWebVitals';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App songs={songs} />
+    <App />
   </React.StrictMode>
 );
 

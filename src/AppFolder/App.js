@@ -1,31 +1,68 @@
+import React, { useCallback, useState } from "react";
 import Playlist from '../Playlist/Playlist';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
+import songs from '../mockSongs.json';
 import './App.css';
 
-function App(props) {
+function App() {
+  const [playlistTracks, setPlaylistTracks] = useState([]);
+  const [playlistName, setPlaylistName] = useState();
+
+
+
+  const addTrack = useCallback(
+    (track) => {
+      if (playlistTracks.some((savedTrack) => savedTrack.id === track.id))
+        return;
+
+      setPlaylistTracks((prevTracks) => [...prevTracks, track]);
+    },
+    [playlistTracks]
+  );
+
+  const removeTrack = useCallback((track) => {
+    setPlaylistTracks((prevTracks) =>
+      prevTracks.filter((currentTrack) => currentTrack.id !== track.id)
+    );
+  }, []);
+
+  const updatePlaylistName = useCallback((name) => {
+    setPlaylistName(name);
+    console.log(playlistName);
+  }, []);
+
+  const savePlaylist = useCallback(() => {
+    // const trackUris = playlistTracks.map((track) => track.uri);
+    // Spotify.savePlaylist(playlistName, trackUris).then(() => {
+    //   setPlaylistName("New Playlist");
+    //   setPlaylistTracks([]);
+    // });
+    setPlaylistName(playlistName);
+    setPlaylistTracks(playlistTracks);
+
+  }, [playlistName, playlistTracks]);
+
   return (
     <div className="App">
       <header className="App-header">
-        {/*<img src={logo} className="App-logo" alt="logo" />*/}
         <SearchBar />
 
         <div className="Music-content">
-          <SearchResults songs={props} />
-          <Playlist songs={props} />
+          <SearchResults
+            songs={songs}
+            onAdd={addTrack}
+          />
+
+          <Playlist
+            playlistName={playlistName}
+            playlistTracks={playlistTracks}
+            onNameChange={updatePlaylistName}
+            onRemove={removeTrack}
+            onSave={savePlaylist}
+          />
         </div>
 
-        {/*<p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-         <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
       </header>
 
     </div>
