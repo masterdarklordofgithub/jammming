@@ -5,10 +5,12 @@ import SearchResults from '../SearchResults/SearchResults';
 import songs from '../mockSongs.json';
 import './App.css';
 
+
 function App() {
   const [playlistTracks, setPlaylistTracks] = useState([]);
-  const [playlistName, setPlaylistName] = useState();
+  const [playlistName, setPlaylistName] = useState('');
 
+  const spotifyClientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 
 
   const addTrack = useCallback(
@@ -29,17 +31,23 @@ function App() {
 
   const updatePlaylistName = useCallback((name) => {
     setPlaylistName(name);
+    console.log(name);
     console.log(playlistName);
-  }, []);
+  }, [playlistName]);
 
-  const savePlaylist = useCallback(() => {
+  const savePlaylist = useCallback((event) => {
     // const trackUris = playlistTracks.map((track) => track.uri);
     // Spotify.savePlaylist(playlistName, trackUris).then(() => {
     //   setPlaylistName("New Playlist");
     //   setPlaylistTracks([]);
     // });
+
+    //Prevent clearing of playlist on click 'add playlist':
+    //event.preventDefault();
+
     setPlaylistName(playlistName);
-    setPlaylistTracks(playlistTracks);
+    //setPlaylistTracks(playlistTracks);
+    console.log(playlistName);
 
   }, [playlistName, playlistTracks]);
 

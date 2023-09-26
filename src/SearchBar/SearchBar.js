@@ -1,5 +1,5 @@
 /*Will contain a SearchBar and a SearchButton*/
-import { useState } from "react";
+import React, { useState } from "react";
 import styles from './SearchBar.module.css';
 
 function SearchBar() {
