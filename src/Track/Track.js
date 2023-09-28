@@ -10,6 +10,12 @@ const Track = (props) => {
     const onAdd = props.onAdd;
     const { track } = props.track;
 
+    const artists = props.track.artists.map(artist => artist.name);
+    const albums = props.track.name
+    console.log(props.track);
+
+    console.log(`hello from Track.js ${artists}`)
+
     const addTrack = useCallback(
         (event) => {
             onAdd(props.track);
@@ -42,11 +48,11 @@ const Track = (props) => {
         <li className={styles.TrackElement}>
             <div id="div-container" className={styles.TrackInfo}>
                 <div id="inner">
-                    <div class="div1">
-                        <p className={styles.SongNameText}>{props.track.name}</p>
+                    <div className="div1">
+                        <p className="songNameText">{props.track.name}</p>
                     </div>
                     <div class="div2">
-                        <p className={styles.SongArtistText}>{props.track.artist} | {props.track.album}</p>
+                        <p className="songArtistText">{props.track.artists.map(artist => artist.name).join(', ')} | {props.track.album.name}</p> {/*artists.join(', ') {props.track.album} */}
                     </div>
                 </div>
                 <div class="div3">

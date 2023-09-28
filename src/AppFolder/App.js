@@ -2,16 +2,25 @@ import React, { useCallback, useState } from "react";
 import Playlist from '../Playlist/Playlist';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
-import songs from '../mockSongs.json';
+
+import Spotify from '../Spotify/Spotify';
+
+import Songs from '../mockSongs.json';
 import './App.css';
 
 
 function App() {
+
   const [playlistTracks, setPlaylistTracks] = useState([]);
   const [playlistName, setPlaylistName] = useState('');
+  const [songName, setSongName] = useState('');
 
-  const spotifyClientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+  const [tracks, setTracks] = useState([]);
 
+
+  const uriArray = Songs.map((song) => {
+    return song.uri;
+  })
 
   const addTrack = useCallback(
     (track) => {
@@ -30,9 +39,10 @@ function App() {
   }, []);
 
   const updatePlaylistName = useCallback((name) => {
-    setPlaylistName(name);
-    console.log(name);
-    console.log(playlistName);
+    //setPlaylistName(name);
+    //console.log(name);
+    //console.log(playlistName);
+    //console.log(uriArray);
   }, [playlistName]);
 
   const savePlaylist = useCallback((event) => {
@@ -51,14 +61,23 @@ function App() {
 
   }, [playlistName, playlistTracks]);
 
+  const searchTracks = useCallback(async (event) => {
+    const response = await Spotify.getTracks(songName);
+    setTracks(await response.items);
+    console.log(tracks);
+  })
+
   return (
     <div className="App">
       <header className="App-header">
-        <SearchBar />
+        <SearchBar
+          setSongName={setSongName}
+          onSearchTracks={searchTracks}
+        />
 
         <div className="Music-content">
           <SearchResults
-            songs={songs}
+            songs={tracks}
             onAdd={addTrack}
           />
 

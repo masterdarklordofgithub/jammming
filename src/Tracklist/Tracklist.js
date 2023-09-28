@@ -8,17 +8,21 @@ function TrackList(props) {
     //const { tracks } = props;
     //const [{ tracks }, setTracks] = useState(props)
     const tracks = props.tracks;
-    const listofTracks = tracks.map((track, i) => (
-        <Track
-            track={track}
-            sign={props.sign}
-            onAdd={props.onAdd}
-            isRemoval={props.isRemoval}
-            onAddPlaylist={props.onAddPlaylist}
-            onRemove={props.onRemove}
-            key={'track_' + i}>{track}
-        </Track>
-    ));
+    let listofTracks;
+    if (tracks) {
+        listofTracks = tracks.map((track, i) => (
+            <Track
+                track={track}
+                sign={props.sign}
+                onAdd={props.onAdd}
+                isRemoval={props.isRemoval}
+                onAddPlaylist={props.onAddPlaylist}
+                onRemove={props.onRemove}
+                key={'track_' + i}>{track}
+            </Track>
+        ));
+    }
+
 
     return (
         <div className="trackList">

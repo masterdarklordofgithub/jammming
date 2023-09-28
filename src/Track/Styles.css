@@ -1,6 +1,6 @@
 #div-container {
     width: 100%;
-
+    overflow: hidden;
 
 
 }
@@ -8,18 +8,18 @@
 #inner {
 
 
-
+    max-width: 80%;
     float: left;
 }
 
 .div1 {
     line-height: 0;
+    max-width: 100%;
 
 }
 
 .div2 {
     line-height: 0;
-
 }
 
 .div3 {
@@ -30,4 +30,20 @@
     justify-content: center;
     align-items: center;
 
+}
+
+.songNameText {
+    font-size: 1.5rem;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+
+.songArtistText {
+    color: rgb(165, 156, 156);
+    font-size: 0.8rem;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }

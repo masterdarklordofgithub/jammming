@@ -1,20 +1,31 @@
 [
     {
         "name": "Track6666Trex",
-        "artist": "artist123",
+        "artists": [
+            "artist123"
+        ],
         "album": "albumyoyo",
-        "id": "123xxxx"
+        "id": "123xxxx",
+        "uri": "https://open.spotify.com/track/33ZXjLCpiINn8eQIDYEPTD?si=5467357353a44aae"
     },
     {
         "name": "Track2",
-        "artist": "artistXXX",
+        "artists": [
+            "markoolio",
+            "artist123"
+        ],
         "album": "albumyoyo",
-        "id": "999"
+        "id": "999",
+        "uri": "https://open.spotify.com/track/1KRdD8IpxMXGB2883OVP2Q?si=b5d1373d055544c6"
     },
     {
         "name": "Track3",
-        "artist": "artisten",
+        "artists": [
+            "artist123",
+            "wawax"
+        ],
         "album": "albumyoyo",
-        "id": "444"
+        "id": "444",
+        "uri": "https://open.spotify.com/track/6E5JDnaSWqj7G0eVUiUjjh?si=931fcaf8be81496c"
     }
 ]
