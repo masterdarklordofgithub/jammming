@@ -1,5 +1,5 @@
 /*Will contain a SearchBar and a SearchButton*/
-import React, { useCallback } from "react";
+import React from "react";
 import styles from './SearchBar.module.css';
 
 function SearchBar(props) {
@@ -9,16 +9,18 @@ function SearchBar(props) {
         //use setSongName props to set value of input for later usage in onClick search?
         props.setSongName(event.target.value);
     }
-    const handleSubmit = useCallback(
-        (event) => {
-            props.onSearchTracks(event.target.value);
-        },
-        [props.onSearchTracks]
-    );
+    // const handleSubmit = useCallback(
+    //     (event) => {
+    //         props.onSearchTracks(event.target.value);
+    //     },
+    //     [props.onSearchTracks]
+    // );
 
     return (
-        <form action="#" className={styles.SearchBar} onSubmit={props.onSearchTracks}>
+        <form name="SearchForm" id="SearchForm" action="#" className={styles.SearchBar} onSubmit={props.onSearchTracks}>
             <input
+                name="SearchInput"
+                id="SearchInput"
                 type="text"
                 aria-label="Search for a song"
                 placeholder="Search for a song"

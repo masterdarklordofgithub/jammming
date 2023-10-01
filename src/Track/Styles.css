@@ -7,8 +7,8 @@
 
 #inner {
 
-
-    max-width: 80%;
+    overflow: hidden;
+    max-width: 89%;
     float: left;
 }
 
