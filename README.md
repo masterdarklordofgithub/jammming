@@ -1,70 +1,130 @@
-# Getting Started with Create React App
+# Jammming
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Jammming is a web application that allows users to search the Spotify library, create custom playlists, and save them to their Spotify accounts.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [**Installation**]()
+- [**Usage**]()
+- [**Components**]()
+- [**Contributing**]()
+- [**License**]()
+## Installation
 
-### `npm start`
+To install Jammming, follow these steps:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository to your local machine using git clone [https://github.com/masterdarklordofgithub/jammming.git]()
+2. Install the required dependencies using *npm install*
+3. Create a new Spotify application on the [Spotify Developer Dashboard]()
+4. Add *http://localhost:3000* as a Redirect URI in your Spotify application settings
+5. Create a *.env* file in the root directory of the project and add your Spotify application Client ID and Redirect URI as environment variables:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+`REACT_APP_SPOTIFY_CLIENT_ID=your_client_id_here
+REACT_APP_SPOTIFY_REDIRECT_URI=http://localhost:3000`
 
-### `npm test`
+## Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To use Jammming, follow these steps:
 
-### `npm run build`
+1. Start the development server using **npm start**
+2. Open your web browser and navigate to **http://localhost:3000**
+3. Search for songs, artists, or albums using the search bar
+4. Log in to your Spotify account at the authentication request.
+5. Click the "+" button next to a song to add it to your playlist
+6. Click the "Save to Spotify" button to save your playlist to your Spotify account
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Components
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The project is built using the following React components:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### **App**
 
-### `npm run eject`
+The top-level component that renders the entire application.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**State**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **searchResults**: An array of objects representing the search results from the Spotify API.
+- **playlistName**: A string representing the name of the user's custom playlist.
+- **playlistTracks**: An array of objects representing the tracks in the user's custom playlist.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Example Usage**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+``<App/>``
 
-## Learn More
+#### **SearchBar**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+A component that allows users to search the Spotify library.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Props**
 
-### Code Splitting
+- **onSearch**: A callback function that is called when the user submits a search query.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Example Usage**
 
-### Analyzing the Bundle Size
+``<SearchBar onSearch={searchSpotify}/>``
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### **SearchResults**
 
-### Making a Progressive Web App
+A component that displays the search results from the Spotify API.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Props**
 
-### Advanced Configuration
+- **searchResults**: An array of objects representing the search results from the Spotify API.
+- **onAdd**: A callback function that is called when the user clicks the "+" button next to a search result.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**Example Usage**
 
-### Deployment
+``<SearchResults searchResults={searchResults} onAdd={addTrack}/>``
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### **Playlist**
 
-### `npm run build` fails to minify
+A component that displays the user's custom playlist.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Props**
+
+- **playlistName**: A string representing the name of the user's custom playlist.
+- **playlistTracks**: An array of objects representing the tracks in the user's custom playlist.
+- **onRemove**: A callback function that is called when the user clicks the "-" button next to a track.
+
+**Example Usage**
+
+``<Playlist playlistName={playlistName} playlistTracks={playlistTracks} onRemove={removeTrack} />``
+
+#### **TrackList**
+
+A component that renders a list of **Track** components.
+
+**Props**
+- tracks: An array of objects representing the tracks to be rendered.
+- onAdd: A callback function that is called when the user clicks the "+" button next to a track.
+- onRemove: A callback function that is called when the user clicks the "-" button next to a track.
+- isRemoval: A boolean value indicating whether the component should render the "+" or "-" button.
+
+``<TrackList tracks={tracks} onAdd={addTrack} onRemove={removeTrack} isRemoval={true} />``
+
+#### **Track**
+
+A component that displays information about a track.
+
+**Props**
+
+- **track**: An object representing the track to be displayed.
+- **onAdd**: A callback function that is called when the user clicks the "+" button next to the track.
+- **onRemove**: A callback function that is called when the user clicks the "-" button next to the track.
+- **isRemoval**: A boolean value indicating whether the component should render the "+" or "-" button.
+
+``<Track track={track} onAdd={addTrack} onRemove={removeTrack} isRemoval={true} />``
+
+### Contributing
+
+If you would like to contribute to Jammming, follow these steps:
+
+1. Fork the repository
+2. Create a new branch for your feature or bug fix
+3. Make your changes and commit them to your branch
+4. Push your changes to your forked repository
+5. Submit a pull request to the main repository
+
+### License
+
+Jammming is licensed under the [MIT License](https://opensource.org/license/mit/).
