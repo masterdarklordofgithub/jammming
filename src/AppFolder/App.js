@@ -57,6 +57,7 @@ function App() {
     event.preventDefault();
     if (songName) {
       try {
+        //TODO: in Spotify object find a better way for authentication(one time app start way?) and use the separate way to acquire the access token without returning it in the URL.
         response = await Spotify.getTracks(songName);
 
       } catch (error) {

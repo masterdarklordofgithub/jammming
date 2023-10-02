@@ -10,6 +10,7 @@ let accessToken;
 const Spotify = {
 
 
+    //TODO: find a better way for authentication(one time app start way?) and use the separate way to acquire the access token without returning it in the URL.
     async getTokenAndAuth() {
         // Check if the access token is already set
         if (accessToken) {
@@ -40,6 +41,7 @@ const Spotify = {
         }
     },
 
+    //TODO: find a better way for authentication(one time app start way?) and use the separate way to acquire the access token without returning it in the URL.
     async getTracks(searchString) {
 
         if (!accessToken) {
