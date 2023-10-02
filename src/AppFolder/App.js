@@ -22,6 +22,9 @@ function App() {
 
       // Add the track to the playlist
       setPlaylistTracks((prevTracks) => [...prevTracks, track]);
+
+      //Remove the track from the search results
+      setTracks((prevTracks) => prevTracks.filter((currentTrack) => currentTrack.id !== track.id));
     },
     [playlistTracks]
   );
@@ -54,6 +57,7 @@ function App() {
   // Define a callback function to search for tracks on Spotify
   const searchTracks = useCallback(async (event) => {
     let response;
+    let items;
     event.preventDefault();
     if (songName) {
       try {
@@ -64,7 +68,13 @@ function App() {
         console.log(tracks)
         console.error(error);
       }
-      setTracks(await response.items);
+      items = await response.items;
+      //Filter out tracks that are already in the playlist
+      items = items.filter((track) => !playlistTracks.some((savedTrack) => savedTrack.id === track.id));
+      if (items) {
+        setTracks(items);
+      }
+
     }
 
   })
