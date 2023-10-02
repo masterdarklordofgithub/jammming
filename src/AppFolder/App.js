@@ -2,11 +2,8 @@ import React, { useCallback, useState } from "react";
 import Playlist from '../Playlist/Playlist';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
-
 import Spotify from '../Spotify/Spotify';
-
-import './App.css';
-
+import styles from './App.module.css';
 
 function App() {
 
@@ -65,20 +62,21 @@ function App() {
   })
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div>
+      <header className={styles.AppHeader}>
         <SearchBar
           setSongName={setSongName}
           onSearchTracks={searchTracks}
         />
 
-        <div className="Music-content">
+        <div className={styles.MusicContent}>
           <SearchResults
             songs={tracks}
             onAdd={addTrack}
           />
 
           <Playlist
+            title="My Playlist"
             playlistName={playlistName}
             playlistTracks={playlistTracks}
             onNameChange={updatePlaylistName}

@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import './Styles.css';
 import styles from './Track.module.css';
 
 //The Track component receives a track prop, which is an object representing a track on Spotify.
@@ -27,12 +26,12 @@ const Track = (props) => {
         if (props.sign === "-") {
             return (
 
-                <input type="button" className={styles.AddSongButton} value={props.sign} onClick={removeTrack} />
+                <input type="button" className={styles.AddSongButton} data-testid="add-btn" value={props.sign} onClick={removeTrack} />
             );
         }
         else {
             return (
-                <input type="button" className={styles.AddSongButton} value={props.sign} onClick={addTrack} />
+                <input type="button" className={styles.AddSongButton} data-testid="remove-btn" value={props.sign} onClick={addTrack} />
             );
         }
 
@@ -40,16 +39,16 @@ const Track = (props) => {
     //The Track component renders a li element with the track name, artist name, album name, and the renderAction() button.
     return (
         <li className={styles.TrackElement}>
-            <div id="div-container" className={styles.TrackInfo}>
-                <div id="inner">
-                    <div className="div1">
-                        <p className="songNameText">{props.track.name}</p>
+            <div className={styles.TrackInfo}>
+                <div id="inner" className={styles.Inner}>
+                    <div className={styles.Div1}>
+                        <p className={styles.SongNameText}>{props.track.name}</p>
                     </div>
-                    <div className="div2">
-                        <p className="songArtistText">{props.track.artists.map(artist => artist.name).join(', ')} | {props.track.album.name}</p> {/*artists.join(', ') {props.track.album} */}
+                    <div className={styles.Div2}>
+                        <p className={styles.SongArtistText}>{props.track.artists ? props.track.artists.map(artist => artist.name).join(', ') : ''} | {props.track.album ? props.track.album.name : ''}</p>
                     </div>
                 </div>
-                <div className="div3">
+                <div className={styles.Div3}>
                     {renderAction()}
                 </div>
             </div>

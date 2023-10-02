@@ -13,6 +13,9 @@
     border-bottom: 2px solid rgb(55, 55, 55);
     line-height: 6px;
     margin: 0 3% 0 3%;
+
+    width: 100%;
+    overflow: hidden;
 }
 
 .AddSongButton {
@@ -29,4 +32,46 @@
 
 .AddSongButton:hover {
     cursor: pointer;
+}
+
+.Inner {
+    overflow: hidden;
+    max-width: 89%;
+    float: left;
+}
+
+.Div1 {
+    line-height: 0;
+    max-width: 100%;
+
+}
+
+.Div2 {
+    line-height: 0;
+}
+
+.Div3 {
+
+    height: 100%;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.SongArtistText {
+    color: rgb(165, 156, 156);
+    font-size: 0.8rem;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.SongNameText {
+    font-size: 1.5rem;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
 }

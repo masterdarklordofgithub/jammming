@@ -1,61 +1,34 @@
-import { shallow } from 'enzyme';
+import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import TrackList from '../TrackList/TrackList';
 import Playlist from './Playlist';
 
-jest.mock('../TrackList/TrackList', () => {
-    return function DummyTrackList(props) {
-        return (
-            <div>
-                <span>TrackList component</span>
-                <span>{JSON.stringify(props)}</span>
-            </div>
-        );
-    };
-});
-
-jest.mock('../Track/Track', () => {
-    return function DummyTrack(props) {
-        return (
-            <div>
-                <span>Track component</span>
-                <span>{JSON.stringify(props)}</span>
-            </div>
-        );
-    };
-});
-
 describe('Playlist', () => {
-    const props = {
-        playlistName: 'My Playlist',
-        playlistTracks: [
-            { id: 1, name: 'Track 1', artist: 'Artist 1', album: 'Album 1' },
-            { id: 2, name: 'Track 2', artist: 'Artist 2', album: 'Album 2' },
-        ],
-        onNameChange: jest.fn(),
-        onRemove: jest.fn(),
-        onSave: jest.fn(),
-    };
-
-    it('renders a TrackList component with the correct props', () => {
-        const wrapper = shallow(<Playlist {...props} />);
-        const trackList = wrapper.find(TrackList);
-        expect(trackList).toHaveLength(1);
-        expect(trackList.props()).toEqual({
-            tracks: props.playlistTracks,
-            onRemove: props.onRemove,
-            sign: '-',
-        });
+    it('renders the playlist title input field', () => {
+        const onNameChange = jest.fn();
+        render(<Playlist onNameChange={onNameChange} />);
+        const inputElement = screen.getByPlaceholderText('Enter playlist title');
+        expect(inputElement).toBeInTheDocument();
     });
-
-    it('renders an input element with the correct props', () => {
-        const wrapper = shallow(<Playlist {...props} />);
-        const input = wrapper.find('input');
-        expect(input).toHaveLength(1);
-        expect(input.props()).toEqual({
-            type: 'text',
-            value: props.playlistName,
-            onChange: props.onNameChange,
-        });
+    it('renders the track list', () => {
+        const playlistTracks = [{ id: 1, name: 'Track 1' }, { id: 2, name: 'Track 2' }];
+        const onRemove = jest.fn();
+        render(<Playlist playlistTracks={playlistTracks} onRemove={onRemove} />);
+        const trackListElement = screen.getByRole('list');
+        expect(trackListElement).toBeInTheDocument();
+    });
+    it('calls the onNameChange prop when the playlist title input field is changed', () => {
+        const handleNameChange = jest.fn();
+        render(<Playlist onNameChange={handleNameChange} />);
+        const inputElement = screen.getByPlaceholderText('Enter playlist title');
+        const newTitle = 'New Playlist Title';
+        fireEvent.change(inputElement, { target: { value: newTitle } });
+        expect(handleNameChange).toHaveBeenCalledWith(newTitle);
+    });
+    it('calls the onSave prop when the add playlist button is clicked', () => {
+        const onSave = jest.fn();
+        render(<Playlist onSave={onSave} />);
+        const addButton = screen.getByRole('button', { name: 'Add Playlist' });
+        addButton.click();
+        expect(onSave).toHaveBeenCalled();
     });
 });

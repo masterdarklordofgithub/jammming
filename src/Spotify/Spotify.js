@@ -140,9 +140,6 @@ const Spotify = {
                 console.log(`Access token in savePlaylist: ${accessToken}`)
                 throw new Error(`HTTP Error: ${response.status}`);
             }
-            //Extracted user is from the response. to be used in create new playlist.
-            // ({ id } = await response.json());
-            // console.log('User ID:', id);
             const jsonResponse = await response.json();
             userId = jsonResponse.id;
             console.log('User ID:', userId);

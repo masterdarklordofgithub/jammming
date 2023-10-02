@@ -17,6 +17,7 @@ function Playlist(props) {
             <div className={styles.TitleDiv}>
                 <input
                     name="PlaylistTitle"
+                    placeholder="Enter playlist title"
                     onChange={handleNameChange}
                     className={styles.InputPlayListTitle}
                 />
