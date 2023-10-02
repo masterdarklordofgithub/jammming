@@ -37,7 +37,7 @@ function App() {
   }, []);
 
   // Define a callback function to update the playlist name
-  const updatePlaylistName = useCallback((name) => {
+  const onNameChange = useCallback((name) => {
     setPlaylistName(name);
   }, []);
 
@@ -96,7 +96,7 @@ function App() {
             title="My Playlist"
             playlistName={playlistName}
             playlistTracks={playlistTracks}
-            onNameChange={updatePlaylistName}
+            onNameChange={onNameChange}
             onRemove={removeTrack}
             onSave={savePlaylist}
           />

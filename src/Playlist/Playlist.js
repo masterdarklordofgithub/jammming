@@ -2,12 +2,12 @@ import React, { useCallback } from 'react';
 import TrackList from '../Tracklist/Tracklist';
 import styles from './Playlist.module.css';
 
-function Playlist(props) {
+function Playlist({ onNameChange, playlistTracks, onRemove, onSave }) {
     //callback function, handleNameChange(), which updates the state variable for the playlist name.
-    const handleNameChange = useCallback(
+    const onChange = useCallback(
         (event) => {
-            props.onNameChange(event.target.value);
-        }, [props.onNameChange]
+            onNameChange(event.target.value);
+        }, [onNameChange]
     );
 
     return (
@@ -17,16 +17,16 @@ function Playlist(props) {
                 <input
                     name="PlaylistTitle"
                     placeholder="Enter playlist title"
-                    onChange={handleNameChange}
+                    onChange={onChange}
                     className={styles.InputPlayListTitle}
                 />
             </div>
 
             <div className={styles.PlaylistContent}>
                 <TrackList
-                    tracks={props.playlistTracks}
+                    tracks={playlistTracks}
                     sign={"-"}
-                    onRemove={props.onRemove}
+                    onRemove={onRemove}
                 />
             </div>
 
@@ -36,7 +36,7 @@ function Playlist(props) {
                     type="submit"
                     value="Add Playlist"
                     className={[styles.AddButton, styles.button].join(" ")}
-                    onClick={props.onSave}
+                    onClick={onSave}
                 />
             </div>
         </div>

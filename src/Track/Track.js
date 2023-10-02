@@ -1,49 +1,48 @@
 import React, { useCallback } from 'react';
 import styles from './Track.module.css';
 
-//The Track component receives a track prop, which is an object representing a track on Spotify.
-const Track = (props) => {
-
-    //The Track component defines two callback functions, addTrack() and removeTrack(), which call the corresponding callback functions passed in as props.
+// Define a functional component called Track, which receives a props object as an argument
+const Track = ({ track, sign, onAdd, onRemove }) => {
+    // Define a useCallback hook for the addTrack function, which calls the onAdd callback function passed in as a prop with the current track object as an argument
     const addTrack = useCallback(
         (event) => {
-            props.onAdd(props.track);
+            onAdd(track);
         },
-        [props.onAdd, props.track]
+        [onAdd, track]
     );
 
+    // Define a useCallback hook for the removeTrack function, which calls the onRemove callback function passed in as a prop with the current track object as an argument
     const removeTrack = useCallback(
         (event) => {
-            props.onRemove(props.track);
+            onRemove(track);
         },
-        [props.onRemove, props.track]
+        [onRemove, track]
     );
 
-    //It also defines a renderAction() function, which returns a button element with the appropriate sign (+ or -) and callback function based on the props.sign prop.
+    // Define a renderAction function, which returns a button element with the appropriate sign (+ or -) and callback function based on the props.sign prop
     const renderAction = () => {
-        if (props.sign === "-") {
+        if (sign === "-") {
             return (
-
-                <input type="button" className={styles.AddSongButton} data-testid="add-btn" value={props.sign} onClick={removeTrack} />
+                <input type="button" className={styles.AddSongButton} data-testid="add-btn" value={sign} onClick={removeTrack} />
             );
         }
         else {
             return (
-                <input type="button" className={styles.AddSongButton} data-testid="remove-btn" value={props.sign} onClick={addTrack} />
+                <input type="button" className={styles.AddSongButton} data-testid="remove-btn" value={sign} onClick={addTrack} />
             );
         }
-
     };
-    //The Track component renders a li element with the track name, artist name, album name, and the renderAction() button.
+
+    // Render a li element with the track name, artist name, album name, and the renderAction() button
     return (
         <li className={styles.TrackElement}>
             <div className={styles.TrackInfo}>
                 <div id="inner" className={styles.Inner}>
                     <div className={styles.Div1}>
-                        <p className={styles.SongNameText}>{props.track.name}</p>
+                        <p className={styles.SongNameText}>{track.name}</p>
                     </div>
                     <div className={styles.Div2}>
-                        <p className={styles.SongArtistText}>{props.track.artists ? props.track.artists.map(artist => artist.name).join(', ') : ''} | {props.track.album ? props.track.album.name : ''}</p>
+                        <p className={styles.SongArtistText}>{track.artists ? track.artists.map(artist => artist.name).join(', ') : ''} | {track.album ? track.album.name : ''}</p>
                     </div>
                 </div>
                 <div className={styles.Div3}>
@@ -52,6 +51,6 @@ const Track = (props) => {
             </div>
         </li>
     );
-}
+};
 
 export default Track;
