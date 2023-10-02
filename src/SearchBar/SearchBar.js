@@ -3,8 +3,8 @@ import styles from './SearchBar.module.css';
 
 function SearchBar(props) {
 
+    // Define a callback function to handle changes to the search input
     const handleTextChange = (event) => {
-        //use setSongName props to set value of input for later usage in onClick search?
         props.setSongName(event.target.value);
     }
 
