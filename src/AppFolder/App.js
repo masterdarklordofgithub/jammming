@@ -69,8 +69,9 @@ function App() {
         console.error(error);
       }
       items = await response.items;
-      //Filter out tracks that are already in the playlist
+      //Filter out tracks from searchResults that are added to or already are in the playlist
       items = items.filter((track) => !playlistTracks.some((savedTrack) => savedTrack.id === track.id));
+
       if (items) {
         setTracks(items);
       }

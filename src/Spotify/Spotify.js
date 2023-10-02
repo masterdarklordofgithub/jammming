@@ -1,4 +1,3 @@
-require('dotenv').config();
 
 //const client_secret = process.env.REACT_APP_CLIENT_SECRET;
 const clientId = process.env.REACT_APP_CLIENT_ID;
