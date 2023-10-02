@@ -3,15 +3,13 @@ import styles from './Track.module.css';
 
 //The Track component receives a track prop, which is an object representing a track on Spotify.
 const Track = (props) => {
-    const onAdd = props.onAdd;
-    const { track } = props.track;
 
     //The Track component defines two callback functions, addTrack() and removeTrack(), which call the corresponding callback functions passed in as props.
     const addTrack = useCallback(
         (event) => {
-            onAdd(props.track);
+            props.onAdd(props.track);
         },
-        [onAdd, track]
+        [props.onAdd, props.track]
     );
 
     const removeTrack = useCallback(

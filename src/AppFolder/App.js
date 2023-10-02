@@ -25,8 +25,7 @@ function App() {
 
       //Remove the track from the search results
       setTracks((prevTracks) => prevTracks.filter((currentTrack) => currentTrack.id !== track.id));
-    },
-    [playlistTracks]
+    }, [playlistTracks]
   );
 
   // Define a callback function to remove a track from the playlist
@@ -40,7 +39,7 @@ function App() {
   // Define a callback function to update the playlist name
   const updatePlaylistName = useCallback((name) => {
     setPlaylistName(name);
-  }, [playlistName]);
+  }, []);
 
   // Define a callback function to save the playlist to Spotify
   const savePlaylist = useCallback(async (event) => {
@@ -59,6 +58,7 @@ function App() {
     let response;
     let items;
     event.preventDefault();
+
     if (songName) {
       try {
         //TODO: in Spotify object find a better way for authentication(one time app start way?) and use the separate way to acquire the access token without returning it in the URL.
@@ -75,10 +75,8 @@ function App() {
       if (items) {
         setTracks(items);
       }
-
     }
-
-  })
+  }, [songName, playlistTracks, tracks]);
 
   return (
     <div>

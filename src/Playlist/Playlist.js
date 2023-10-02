@@ -7,8 +7,7 @@ function Playlist(props) {
     const handleNameChange = useCallback(
         (event) => {
             props.onNameChange(event.target.value);
-        },
-        [props.onNameChange]
+        }, [props.onNameChange]
     );
 
     return (
