@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Playlist from '../Playlist/Playlist';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
@@ -50,6 +50,7 @@ function App() {
 
     const response = await Spotify.savePlaylist(playlistName, listOfPlaylistTrackIds);
     console.log(response)
+    setPlaylistTracks([]);
 
   }, [playlistName, playlistTracks]);
 
@@ -77,6 +78,17 @@ function App() {
       }
     }
   }, [songName, playlistTracks, tracks]);
+
+  // Authorize and initialize accessToken as soon as the component mounts
+  useEffect(() => {
+    async function fetchTracks() {
+      const response = await Spotify.getTokenAndAuth();
+      const items = await response.items;
+      console.log(items);
+
+    }
+    fetchTracks();
+  }, []);
 
   return (
     <div>
