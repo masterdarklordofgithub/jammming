@@ -87,6 +87,7 @@ function App() {
       console.log(items);
 
     }
+    // Call the fetchTracks function when the component mounts
     fetchTracks();
   }, []);
 

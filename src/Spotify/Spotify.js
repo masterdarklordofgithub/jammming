@@ -1,7 +1,7 @@
 
 //const client_secret = process.env.REACT_APP_CLIENT_SECRET;
 const clientId = process.env.REACT_APP_CLIENT_ID;
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'https://651c887ed779950008d9fe91--adams-spotify-app.netlify.app/';
 const scope = 'playlist-modify-public playlist-modify-private';
 let accessToken;
 
